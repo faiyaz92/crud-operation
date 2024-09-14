@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #user-list {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<h1>User Management</h1>
+
+<form id="user-form">
+    <label>Username:</label>
+    <input type="text" id="username" name="username"><br><br>
+    <label>Age:</label>
+    <input type="number" id="age" name="age"><br><br>
+    <label>Address:</label>
+    <input type="text" id="address" name="address"><br><br>
+    <button id="add-btn" onclick="addUser()">Add User</button>
+    <button id="show-btn" onclick="showUsers()">Show Users</button>
+</form>
+
+<div id="user-list">
+    <h2>User List</h2>
+    <table id="user-table">
+        <thead>
+        <tr>
+            <th>Username</th>
+            <th>Age</th>
+            <th>Address</th>
+            <th> Actions</th>
+        </tr>
+        </thead>
+        <tbody id="user-table-body">
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function addUser() {
+        const username = document.getElementById('username').value;
+        const age = document.getElementById('age').value;
+        const address = document.getElementById('address').value;
+
+        const userData = {
+            username,
+            age,
+            address
+        };
+
+        fetch('/api/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        })
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(error => console.error(error));
+    }
+
+    function showUsers() {
+        window.location.href = '/users';
+    }
+</script>
+</body>
+</html>
+
+
