@@ -4,15 +4,14 @@ import com.example.Crud.operation.data.Employee;
 import com.example.Crud.operation.services.EmployeeService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-public class UserController {
+public class EmployeeController {
     final
     EmployeeService employeeService;
 
-    public UserController(EmployeeService employeeService) {
+    public EmployeeController(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
 
